@@ -1,0 +1,13 @@
+#sidebar {
+  border: solid 1px black;
+}
+
+#codebox {
+  border: solid 1px black;
+  background-color: #f3f3f3;
+}
+
+.loc-span:hover {
+    cursor: pointer;
+}
+

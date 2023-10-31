@@ -1,5 +1,8 @@
 #sidebar {
   border: solid 1px black;
+  border-left: solid 3px grey;
+  background-color: #282c34;
+  color: #abb2c0;
 }
 
 #codebox {
@@ -11,3 +14,7 @@
     cursor: pointer;
 }
 
+
+hr {
+  background-color: #abb2c0;
+}

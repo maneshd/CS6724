@@ -8,21 +8,42 @@ function loadCode(codeText) {
     let codebox = document.getElementById("da-code");
     codebox.innerHTML = "";
 
+    let lineToQuestionCount = TEST_CODE.split("\n").map((_, idx) => {
+        let lineNum = idx + 1;
+        return DATA.Questions.filter((q) => {
+            let [lo, hi] = q.Lines;
+            return lo <= lineNum && lineNum <= hi;
+        }).length;
+    });
+    let maxQuestionCount = Math.max(...lineToQuestionCount);
+
+
     // For each line of code
     TEST_CODE.split("\n").forEach((line, idx) => {
         idx++;
 
+        let uberSpan = document.createElement("span");
+        uberSpan.id = `L${idx}`;
+        uberSpan.classList.add("loc-span");
+        codebox.append(uberSpan);
+
+        let lineNumSpan = document.createElement("span");
+        lineNumSpan.innerHTML = String("   " + idx).slice(-3) + "  ";
+        // Calculate the highlight :) 
+        lineNumSpan.style.backgroundColor = `rgba(205, 0, 255, ${lineToQuestionCount[idx - 1] / (maxQuestionCount*2)})`;
+        lineNumSpan.classList.add("line-number")
+        uberSpan.append(lineNumSpan);
+
         // Create a span w/ the line of code
         let span = document.createElement("span");
-        span.id = `L${idx}`;
-        let linenum = String("   " + idx).slice(-3)
-        span.innerHTML = `${linenum}  ${line}\n`;
-        span.classList.add("loc-span");
+        span.innerHTML = `${line}\n`;
+        span.classList.add("actual-code-line");
+
 
         // Add the span to the codebox
-        codebox.append(span);
+        uberSpan.append(span);
 
-        // Highlight the code. Note: this has to happen inside the span
+        // Syntax highlighting. Note: this has to happen inside the span
         // (i.e., can't just do it on the codebox).
         hljs.highlightElement(span);
 

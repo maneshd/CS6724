@@ -23,3 +23,11 @@ hr {
 body {
   background-color: #f6d3fc;
 }
+
+.line-number {
+  color: #abb2c0;
+}
+
+.actual-code-line {
+  padding-left: 9px;
+}

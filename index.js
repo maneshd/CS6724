@@ -32,7 +32,6 @@ function loadCode(codeText) {
         });
 
     });
-    readJSON()
 }
 
 function updateSidebar(lineOfCode) {
@@ -42,16 +41,34 @@ function updateSidebar(lineOfCode) {
     DATA.Questions.forEach(el => {
         if(lineOfCode >= el.Lines[0] && lineOfCode <= el.Lines[1])
         {
+            let accord = document.createElement("div");
+            accord.classList.add("accordion");
             for(let i = 0; i <el.Questions.length; i++)
             {
-                let ques = el.Questions[i]
+                let thingy = document.createElement("div");
+                thingy.classList.add("accordion-item");
+                let ques = el.Questions[i];
+                let short = ques;
+                if(ques.length > 25)
+                {   
+                    short = ques.slice(0,25) + "...";
+                }
                 let ans = el.Chatgpt_response[i]
                 let div = document.createElement("div")
-                div.innerHTML = `${ques} <br><hr> ${ans} <hr><hr>`;
-                div.classList.add("QA")
-    
-                sidebar.append(div)
+                div.innerHTML = `<h3><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    ${short} </button> </h3>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                        <strong>${ques}</strong><br> ${ans} <br>
+                        </div>
+                    </div>`;
+                thingy.append(div);
+                accord.append(thingy);
             }
+            let sep = document.createElement("div");
+            sep.innerHTML = `<hr><hr>`;
+            sidebar.append(accord);
+            sidebar.append(sep);
         }
     });
     

@@ -2,15 +2,6 @@
 const DATA = {
   Questions: [
     {
-      Questions: [
-        "What libraries are being imported in the first few lines of the code?",
-      ],
-      Chatgpt_response: [
-        "These lines are importing necessary libraries for data manipulation and visualization, including pandas, seaborn, matplotlib, and numpy.",
-      ],
-      Lines: [1, 4],
-    },
-    {
       Questions: ['What does pd.read_csv("Classified Data",index_col=0) do?'],
       Chatgpt_response: [
         'This line is reading a CSV file named "Classified Data" and setting the first column as the index of the DataFrame.',
@@ -23,13 +14,6 @@ const DATA = {
         "df.head() displays the first few rows of the DataFrame df. It's useful for getting a quick overview of the data.",
       ],
       Lines: [7, 7],
-    },
-    {
-      Questions: ["What is the purpose of StandardScaler in this code?"],
-      Chatgpt_response: [
-        "StandardScaler is used to standardize the features by removing the mean and scaling to unit variance.",
-      ],
-      Lines: [9, 12],
     },
     {
       Questions: [
@@ -48,27 +32,11 @@ const DATA = {
       Lines: [13, 13],
     },
     {
-      Questions: [
-        "What is the purpose of a train-test split in machine learning?",
-      ],
-      Chatgpt_response: [
-        "A train-test split is used to evaluate the performance of a machine learning model. It separates the data into two sets: one for training the model and the other for testing its performance.",
-      ],
-      Lines: [1, 72],
-    },
-    {
       Questions: ["What is the meaning of test_size=0.30?"],
       Chatgpt_response: [
         "It means that 30% of the data will be used for testing the model, and 70% will be used for training.",
       ],
       Lines: [17, 17],
-    },
-    {
-      Questions: ["What is the purpose of a K-Nearest Neighbors Classifier?"],
-      Chatgpt_response: [
-        "The K-Nearest Neighbors (KNN) classifier is a type of supervised learning algorithm used for both classification and regression tasks. It classifies an object based on its neighboring objects in the feature space.",
-      ],
-      Lines: [1, 72],
     },
     {
       Questions: ["Explain this code"],
@@ -90,13 +58,6 @@ const DATA = {
         "It uses the trained KNN model to make predictions on the test data.",
       ],
       Lines: [24, 24],
-    },
-    {
-      Questions: ["Explain this code"],
-      Chatgpt_response: [
-        "It's iterating through different values of n_neighbors to find the one that minimizes the error rate.",
-      ],
-      Lines: [32, 36],
     },
     {
       Questions: [
@@ -208,15 +169,6 @@ const DATA = {
       Lines: [14, 14],
     },
     {
-      Questions: [
-        "How does setting K=23 in the KNN classifier differ from the previous case with K=1?",
-      ],
-      Chatgpt_response: [
-        "Setting K=23 means that the KNN classifier considers 23 closest neighbors when making predictions, which can result in a smoother decision boundary and may be less sensitive to individual data points.",
-      ],
-      Lines: [50, 72],
-    },
-    {
       Questions: ["Explain this code"],
       Chatgpt_response: [
         "This line is used to create a line plot. It plots the error_rate values against the range of k values (from 1 to 39) to visualize how the error rate changes with different values of k.",
@@ -239,6 +191,54 @@ const DATA = {
       ],
       Lines: [40, 40],
     },
+    {
+      Questions: [
+        "What libraries are being imported in the first few lines of the code?",
+      ],
+      Chatgpt_response: [
+        "These lines are importing necessary libraries for data manipulation and visualization, including pandas, seaborn, matplotlib, and numpy.",
+      ],
+      Lines: [1, 4],
+    },
+    {
+      Questions: ["What is the purpose of StandardScaler in this code?"],
+      Chatgpt_response: [
+        "StandardScaler is used to standardize the features by removing the mean and scaling to unit variance.",
+      ],
+      Lines: [9, 12],
+    },
+    {
+      Questions: ["Explain this code"],
+      Chatgpt_response: [
+        "It's iterating through different values of n_neighbors to find the one that minimizes the error rate.",
+      ],
+      Lines: [32, 36],
+    },
+    {
+      Questions: [
+        "How does setting K=23 in the KNN classifier differ from the previous case with K=1?",
+      ],
+      Chatgpt_response: [
+        "Setting K=23 means that the KNN classifier considers 23 closest neighbors when making predictions, which can result in a smoother decision boundary and may be less sensitive to individual data points.",
+      ],
+      Lines: [50, 72],
+    },
+    {
+      Questions: [
+        "What is the purpose of a train-test split in machine learning?",
+      ],
+      Chatgpt_response: [
+        "A train-test split is used to evaluate the performance of a machine learning model. It separates the data into two sets: one for training the model and the other for testing its performance.",
+      ],
+      Lines: [1, 72],
+    },
+    {
+      Questions: ["What is the purpose of a K-Nearest Neighbors Classifier?"],
+      Chatgpt_response: [
+        "The K-Nearest Neighbors (KNN) classifier is a type of supervised learning algorithm used for both classification and regression tasks. It classifies an object based on its neighboring objects in the feature space.",
+      ],
+      Lines: [1, 72],
+    }
   ],
 };
 

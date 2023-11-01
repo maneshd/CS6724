@@ -46,8 +46,13 @@ function updateSidebar(lineOfCode) {
             {
                 let ques = el.Questions[i]
                 let ans = el.Chatgpt_response[i]
+                let lines = ``
+                //40 is an arbitrary number, so we do not have a bunch of questions with "1-72" when someone highlights all the code
+                if (el.Lines[0] != el.Lines[1] && el.Lines[1] - el.Lines[0] < 40){
+                    lines = `Lines ${el.Lines[0]} - ${el.Lines[1]} <br>`
+                } 
                 let div = document.createElement("div")
-                div.innerHTML = `${ques} <br><hr> ${ans} <hr><hr>`;
+                div.innerHTML = `${lines} ${ques} <br><hr> ${ans} <hr><hr>`;
                 div.classList.add("QA")
     
                 sidebar.append(div)

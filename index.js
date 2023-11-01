@@ -57,7 +57,7 @@ function loadCode(codeText) {
 
 function updateSidebar(lineOfCode) {
   let sidebar = document.getElementById("sidebar");
-  sidebar.innerHTML = `<h2>You clicked line: ${lineOfCode}!</h2><hr>`;
+  sidebar.innerHTML = `<h2>Questions for line ${lineOfCode}</h2><hr>`;
 
   DATA.Questions.forEach((el, idx) => {
     if (lineOfCode >= el.Lines[0] && lineOfCode <= el.Lines[1]) {

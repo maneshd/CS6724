@@ -38,11 +38,11 @@ function loadCode(codeText) {
 function updateSidebar(lineOfCode) {
     let sidebar = document.getElementById("sidebar");
     sidebar.innerHTML = `<h2>You clicked line: ${lineOfCode}!</h2><hr><hr>`;
-    
+
     DATA.Questions.forEach(el => {
         if(lineOfCode >= el.Lines[0] && lineOfCode <= el.Lines[1])
         {
-            for(let i = 0; i <el.Questions.length; i++)
+            for(let i = 0; i < el.Questions.length; i++)
             {
                 let ques = el.Questions[i]
                 let ans = el.Chatgpt_response[i]

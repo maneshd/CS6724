@@ -1,11 +1,10 @@
 window.onload = () => {
-    // TEST_CODE is in data.js.
-    loadCode(TEST_CODE);
+  // TEST_CODE is in data.js.
+  loadCode(TEST_CODE);
 };
 
-
 function loadCode(codeText) {
-    let codebox = document.getElementById("da-code");
+  let codebox = document.getElementById("da-code");
     codebox.innerHTML = "";
 
     let lineToQuestionCount = TEST_CODE.split("\n").map((_, idx) => {
@@ -54,32 +53,40 @@ function loadCode(codeText) {
         });
 
     });
-    readJSON()
 }
 
 function updateSidebar(lineOfCode) {
-    let sidebar = document.getElementById("sidebar");
-    sidebar.innerHTML = `<h2>You clicked line: ${lineOfCode}!</h2><hr><hr>`;
+  let sidebar = document.getElementById("sidebar");
+  sidebar.innerHTML = `<h2>You clicked line: ${lineOfCode}!</h2><hr>`;
 
-    DATA.Questions.forEach(el => {
-        if(lineOfCode >= el.Lines[0] && lineOfCode <= el.Lines[1])
-        {
-            for(let i = 0; i < el.Questions.length; i++)
-            {
-                let ques = el.Questions[i]
-                let ans = el.Chatgpt_response[i]
-                let lines = ``
-                //40 is an arbitrary number, so we do not have a bunch of questions with "1-72" when someone highlights all the code
-                if (el.Lines[0] != el.Lines[1] && el.Lines[1] - el.Lines[0] < 40){
-                    lines = `Lines ${el.Lines[0]} - ${el.Lines[1]} <br>`
-                } 
-                let div = document.createElement("div")
-                div.innerHTML = `${lines} ${ques} <br><hr> ${ans} <hr><hr>`;
-                div.classList.add("QA")
-    
-                sidebar.append(div)
-            }
+  DATA.Questions.forEach((el, idx) => {
+    if (lineOfCode >= el.Lines[0] && lineOfCode <= el.Lines[1]) {
+      let accord = document.createElement("div");
+      accord.classList.add("accordion");
+      accord.id = `accordionExample${idx}`;
+      for (let i = 0; i < el.Questions.length; i++) {
+        let thingy = document.createElement("div");
+        thingy.classList.add("accordion-item");
+        let ques = el.Questions[i];
+        let short = ques;
+        let maxLength = 50;
+        if (ques.length > maxLength) {
+          short = ques.slice(0, maxLength) + "...";
         }
-    });
-    
+        let ans = el.Chatgpt_response[i];
+        thingy.innerHTML = `<h5><button class="accordion-button collapsed question-butt" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${idx}_${i}" aria-expanded="false" aria-controls="collapseOne">
+                    ${short} </button> </h5>
+                    <div id="collapse${idx}_${i}" class="accordion-collapse collapse" aria-labelledby="headingOne">
+                        <div class="accordion-body">
+                        <div class="question-text p-2">${ques}</div> <div class="answer-text p-2"> ${ans} </div>
+                        </div>
+                    </div>`;
+        accord.append(thingy);
+      }
+      let sep = document.createElement("div");
+      sep.innerHTML = `<hr>`;
+      sidebar.append(accord);
+      sidebar.append(sep);
+    }
+  });
 }

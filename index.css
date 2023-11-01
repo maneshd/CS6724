@@ -17,11 +17,24 @@
 
 hr {
   background-color: #abb2c0;
+  height: 2px;
+  border-radius: 10px;
 }
 
 
 body {
   background-color: #f6d3fc;
+}
+
+.question-text {
+  font-weight: bold;
+}
+
+.question-butt {
+  border-radius: 20px;
+  min-width: 100%;
+  min-height: 50px;
+  background-color: rgb(246 212 252 / 83%);
 }
 
 .line-number {

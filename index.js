@@ -74,10 +74,10 @@ function updateSidebar(lineOfCode) {
           short = ques.slice(0, maxLength) + "...";
         }
         if (el.Lines[0] != el.Lines[1] && el.Lines[1] - el.Lines[0] < 40){
-          lines = `Lines ${el.Lines[0]} - ${el.Lines[1]} <br>`
+          lines = `Lines ${el.Lines[0]} - ${el.Lines[1]} <br><hr>`
         } 
         else if (el.Lines[0] == el.Lines[1]){
-          lines = `Lines ${el.Lines[0]}<br>`
+          lines = `Lines ${el.Lines[0]}<br><hr>`
 
         }
         let ans = el.Chatgpt_response[i];

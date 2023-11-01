@@ -238,14 +238,14 @@ const DATA = {
       Chatgpt_response: [
         "A train-test split is used to evaluate the performance of a machine learning model. It separates the data into two sets: one for training the model and the other for testing its performance.",
       ],
-      Lines: [1, 72],
+      Lines: [16, 17],
     },
     {
       Questions: ["What is the purpose of a K-Nearest Neighbors Classifier?"],
       Chatgpt_response: [
         "The K-Nearest Neighbors (KNN) classifier is a type of supervised learning algorithm used for both classification and regression tasks. It classifies an object based on its neighboring objects in the feature space.",
       ],
-      Lines: [1, 72],
+      Lines: [22, 24],
     }
   ],
 };

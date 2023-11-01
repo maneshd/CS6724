@@ -8,6 +8,17 @@
 #codebox {
   border: solid 1px black;
   background-color: #282c34;
+  max-height: 1000px;
+  overflow: scroll;
+}
+
+/* safari and chrome? */
+#codebox::-webkit-scrollbar { 
+  display: none; 
+}
+
+pre::-webkit-scrollbar { 
+  display: none; 
 }
 
 .loc-span:hover {
@@ -15,12 +26,25 @@
 }
 
 
-hr {
-  background-color: #abb2c0;
+hr.thick-boi {
   height: 2px;
   border-radius: 10px;
 }
 
+hr.thin-boi {
+  margin-top: 2px;
+}
+
+hr {
+  background-color: #abb2c0;
+}
+
+.line-chip {
+  /* border: solid 1px #f6d3fc;
+  border-radius: 10px;
+  padding: 4px; */
+  color: grey;
+}
 
 body {
   background-color: #f6d3fc;
@@ -46,7 +70,15 @@ body {
 }
 
 .back-button{
-  background-color :#f6d3fc;
+  background-color: #d4b7db;
   border-radius: 10px;
   color: black;
+}
+
+.highlight > span {
+  background-color: rgba(212, 50, 219, 0.5);
+}
+
+.accordion :hover {
+  cursor: pointer;
 }

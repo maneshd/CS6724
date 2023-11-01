@@ -6,6 +6,7 @@ window.onload = () => {
 function loadCode(codeText) {
   let codebox = document.getElementById("da-code");
     codebox.innerHTML = "";
+    loadSidebar(DATA);
 
     let lineToQuestionCount = TEST_CODE.split("\n").map((_, idx) => {
         let lineNum = idx + 1;
@@ -51,7 +52,6 @@ function loadCode(codeText) {
             console.log("HI");
             updateSidebar(idx);
         });
-
     });
 }
 
@@ -73,12 +73,15 @@ function updateSidebar(lineOfCode) {
         if (ques.length > maxLength) {
           short = ques.slice(0, maxLength) + "...";
         }
+        if (el.Lines[0] != el.Lines[1] && el.Lines[1] - el.Lines[0] < 40){
+          lines = `Lines ${el.Lines[0]} - ${el.Lines[1]} <br>`
+      } 
         let ans = el.Chatgpt_response[i];
         thingy.innerHTML = `<h5><button class="accordion-button collapsed question-butt" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${idx}_${i}" aria-expanded="false" aria-controls="collapseOne">
                     ${short} </button> </h5>
                     <div id="collapse${idx}_${i}" class="accordion-collapse collapse" aria-labelledby="headingOne">
                         <div class="accordion-body">
-                        <div class="question-text p-2">${ques}</div> <div class="answer-text p-2"> ${ans} </div>
+                        <div class="question-text p-2">${lines}${ques}</div> <div class="answer-text p-2"> ${ans} </div>
                         </div>
                     </div>`;
         accord.append(thingy);
@@ -87,6 +90,22 @@ function updateSidebar(lineOfCode) {
       sep.innerHTML = `<hr>`;
       sidebar.append(accord);
       sidebar.append(sep);
+
+      button.addEventListener('click', () => {
+        loadSidebar(DATA);
+    });
     }
   });
 }
+function loadSidebar(data){
+    let sidebar = document.getElementById("sidebar");
+    sidebar.innerHTML = `<h2>Questions Summary<hr>`;
+    let ul = document.createElement("ul")
+    DATA.Summary.forEach(el => {
+        let li = document.createElement('li');
+        li.innerHTML = el;
+        ul.appendChild(li);
+    });
+    sidebar.append(ul);
+}
+

@@ -29,7 +29,7 @@ function loadCode(codeText) {
         let lineNumSpan = document.createElement("span");
         lineNumSpan.innerHTML = String("   " + idx).slice(-3) + "  ";
         // Calculate the highlight :) 
-        lineNumSpan.style.backgroundColor = `rgba(205, 0, 255, ${lineToQuestionCount[idx - 1] / (maxQuestionCount*2)})`;
+        lineNumSpan.style.backgroundColor = `rgba(205, 0, 255, ${lineToQuestionCount[idx - 1] / (maxQuestionCount)})`;
         lineNumSpan.classList.add("line-number")
         uberSpan.append(lineNumSpan);
 

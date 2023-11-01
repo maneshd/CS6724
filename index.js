@@ -58,10 +58,6 @@ function loadCode(codeText) {
 function updateSidebar(lineOfCode) {
   let sidebar = document.getElementById("sidebar");
   sidebar.innerHTML = `<h2>You clicked line: ${lineOfCode}!</h2><hr>`;
-  const button = document.createElement("button");
-  button.textContent = "Go Back";
-  sidebar.append(button);
-
 
   DATA.Questions.forEach((el, idx) => {
     if (lineOfCode >= el.Lines[0] && lineOfCode <= el.Lines[1]) {
@@ -99,10 +95,14 @@ function updateSidebar(lineOfCode) {
       sidebar.append(accord);
       sidebar.append(sep);
 
-      button.addEventListener('click', () => {
-        loadSidebar(DATA);
-    });
     }
+  });
+  const button = document.createElement("button");
+  button.textContent = "Go Back";
+  button.classList.add("back-button")
+  sidebar.append(button);
+  button.addEventListener('click', () => {
+    loadSidebar(DATA);
   });
 }
 function loadSidebar(data){

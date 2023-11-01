@@ -16,7 +16,7 @@ function loadCode(codeText) {
         // Create a span w/ the line of code
         let span = document.createElement("span");
         span.id = `L${idx}`;
-        let linenum = String("   " + idx).slice(-3)
+        let linenum = String("   " + idx).slice(-3);
         span.innerHTML = `${linenum}  ${line}\n`;
         span.classList.add("loc-span");
 
@@ -41,19 +41,19 @@ function loadSidebar(data){
     sidebar.innerHTML = `<h2>Questions Summary<hr>`;
     let ul = document.createElement("ul")
     DATA.Summary.forEach(el => {
-        let li = document.createElement('li')
-        li.innerHTML = el
-        ul.appendChild(li)
+        let li = document.createElement('li');
+        li.innerHTML = el;
+        ul.appendChild(li);
     });
-    sidebar.append(ul)
+    sidebar.append(ul);
 }
 
 function updateSidebar(lineOfCode) {
     let sidebar = document.getElementById("sidebar");
-    let button = document.createElement("button");
-    //button.innerHTML = 'class=\'btn btn-success pull-right\'> Button Text';
-    codebox.append(button);
     sidebar.innerHTML = `<h2>You clicked line: ${lineOfCode}!</h2><hr>`;
+    const button = document.createElement("button");
+    button.textContent = "Go Back";
+    sidebar.append(button);
 
     DATA.Questions.forEach(el => {
         if(lineOfCode >= el.Lines[0] && lineOfCode <= el.Lines[1])
@@ -74,5 +74,9 @@ function updateSidebar(lineOfCode) {
                 sidebar.append(div)
             }
         }
+    });
+
+    button.addEventListener('click', () => {
+        loadSidebar(DATA);
     });
 }

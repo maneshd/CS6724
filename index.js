@@ -68,7 +68,7 @@ function updateSidebar(lineOfCode) {
                     lines = `Lines ${el.Lines[0]} - ${el.Lines[1]} <br>`
                 } 
                 let div = document.createElement("div")
-                div.innerHTML = `${lines} ${ques} <br><hr> ${ans} <hr><hr>`;
+                div.innerHTML = `<hr>${lines} ${ques} <br><hr> ${ans} <hr>`;
                 div.classList.add("QA")
     
                 sidebar.append(div)

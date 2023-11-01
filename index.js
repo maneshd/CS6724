@@ -15,7 +15,8 @@ function loadCode(codeText) {
         // Create a span w/ the line of code
         let span = document.createElement("span");
         span.id = `L${idx}`;
-        span.innerHTML = `${line}\n`;
+        let linenum = String("   " + idx).slice(-3)
+        span.innerHTML = `${linenum}  ${line}\n`;
         span.classList.add("loc-span");
 
         // Add the span to the codebox

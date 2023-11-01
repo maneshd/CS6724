@@ -1,5 +1,13 @@
 // We can just plop our data/JSON in this file lol
 const DATA = {
+  Summary: [
+    'Understanding code purpose, especially scikit-learn functions.',
+    'Grasping K-Nearest Neighbors (KNN) and n_neighbors.',
+    'Grasping feature standardization.',
+    'Interpreting visualizations, like error rate plots.',
+    'Interpreting evaluation metrics (e.g., confusion matrix, classification report).',
+    'Navigating Python syntax and library functions.'
+  ],
   Questions: [
     {
       Questions: ['What does pd.read_csv("Classified Data",index_col=0) do?'],

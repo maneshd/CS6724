@@ -76,6 +76,10 @@ function updateSidebar(lineOfCode) {
         if (el.Lines[0] != el.Lines[1] && el.Lines[1] - el.Lines[0] < 40){
           lines = `Lines ${el.Lines[0]} - ${el.Lines[1]} <br>`
         } 
+        else if (el.Lines[0] == el.Lines[1]){
+          lines = `Lines ${el.Lines[0]}<br>`
+
+        }
         let ans = el.Chatgpt_response[i];
         thingy.innerHTML = `<h5><button class="accordion-button collapsed question-butt" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${idx}_${i}" aria-expanded="false" aria-controls="collapseOne">
                     ${short} </button> </h5>

@@ -50,7 +50,7 @@ function loadSidebar(data){
 
 function updateSidebar(lineOfCode) {
     let sidebar = document.getElementById("sidebar");
-    sidebar.innerHTML = `<h2>You clicked line: ${lineOfCode}!</h2><hr>`;
+    sidebar.innerHTML = `<h2>Questions for line ${lineOfCode}`;
     const button = document.createElement("button");
     button.textContent = "Go Back";
     sidebar.append(button);

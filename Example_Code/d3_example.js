@@ -1,3 +1,5 @@
+// Source: https://observablehq.com/@d3/splom/2
+
 // Specify the chart’s dimensions.
 const width = 928;
 const height = width;

@@ -21,9 +21,9 @@ pre::-webkit-scrollbar {
   display: none; 
 }
 
-.loc-span:hover {
+/* .loc-span:hover {
     cursor: pointer;
-}
+} */
 
 
 hr.thick-boi {
@@ -80,5 +80,10 @@ body {
 }
 
 .accordion :hover {
+  cursor: pointer;
+}
+
+.has-questions:hover {
+  background-color: rgba(212, 50, 219, 0.5);
   cursor: pointer;
 }

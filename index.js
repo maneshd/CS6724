@@ -32,6 +32,7 @@ function loadCode(codeText) {
     lineNumSpan.style.backgroundColor = `rgba(205, 0, 255, ${
       lineToQuestionCount[idx - 1] / maxQuestionCount
     })`;
+
     lineNumSpan.classList.add("line-number");
     uberSpan.append(lineNumSpan);
 
@@ -42,6 +43,12 @@ function loadCode(codeText) {
 
     // Add the span to the codebox
     uberSpan.append(span);
+
+    // Highlight on-hover...
+    if (lineToQuestionCount[idx-1] > 0) {
+      // uberSpan.classList.add("has-questions");
+      span.classList.add("has-questions");
+    }
 
     // Syntax highlighting. Note: this has to happen inside the span
     // (i.e., can't just do it on the codebox).

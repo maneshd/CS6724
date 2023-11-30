@@ -154,4 +154,28 @@
         ],
         Lines: [172, 172],
     },
+    {
+        Questions: [
+            `Why is the second graph here labelled "Decision boundary"? It looks to me like we just generated another random set of data points and then ran the predictions on them, so I'm not sure how it's different from the first plot (other than using different data).`,
+            `So, the first graph shows the labelled training data, and the second graph shows how our classifier labels some new data?`,
+        ],
+        Chatgpt_response: [
+            `In the given code snippet, the second graph is labeled "Decision boundary" because it visualizes the decision boundary of the neural network model.
+
+            To understand the concept of a decision boundary, let's consider a binary classification problem where we have two classes: Class A and Class B. The decision boundary is the line or curve that separates the two classes in the feature space. Any data point falling on one side of the decision boundary is classified as Class A, while those falling on the other side are classified as Class B.
+            
+            In the code snippet, the first graph shows the training and test set, where the data points are plotted based on their features (X) and colored according to their corresponding class labels (y). This graph helps us visualize the distribution of the data.
+            
+            The second graph, labeled "Decision boundary," shows the decision boundary of the neural network model. To generate this plot, a new set of data points (X_temp) is created, and the model's predictions (y_predict_temp) for these data points are computed using the predict function. The data points in this graph are also plotted based on their features (X_temp), but they are colored according to the model's predictions (y_predict_temp).
+            
+            By visualizing the decision boundary, we can gain insights into how the neural network model separates the two classes. It helps us understand how the model makes predictions based on the learned patterns in the training data.In the given code snippet, the second graph is labeled "Decision boundary" because it visualizes the decision boundary of the neural network model.
+            `,
+            `Yes, that's correct.
+
+            The first graph is a scatter plot of the training data, where the colors represent the true labels of the data points. This gives you an idea of how the data is distributed and how the classes are separated.
+            
+            The second graph is a scatter plot of new data points that were not part of the training data. The colors in this plot represent the labels predicted by the neural network. This plot gives you an idea of how the neural network would classify new, unseen data. The decision boundary, which is the line or curve that the model uses to separate the classes, can be inferred from this plot.`
+        ],
+        Lines: [170, 190],
+    },
   ];

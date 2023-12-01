@@ -10,7 +10,7 @@ window.onload = () => {
 function loadCode(codeText) {
   let codebox = document.getElementById("da-code");
   codebox.innerHTML = "";
-  loadSidebar(data);
+  loadSummary(data);
 
   let lineToQuestionCount = testCode.split("\n").map((_, idx) => {
     let lineNum = idx + 1;
@@ -136,16 +136,97 @@ function updateSidebar(lineOfCode) {
 }
 
 // Initial sidebar (i.e., the summaries)
-function loadSidebar(data) {
+function loadSummary(data) {
   let sidebar = document.getElementById("sidebar");
   sidebar.innerHTML = `<h2>Questions Summary<hr class="thick-boi">`;
   let ul = document.createElement("ul");
-  data.Summary.forEach(({daText}) => {
+  data.Summary.forEach(({daText}, idx) => {
     let li = document.createElement("li");
-    li.innerHTML = daText;
+    let a = document.createElement("a");
+    a.href = "#";
+    a.classList.add("link-info");
+    li.append(a);
+    a.innerHTML = daText;
     ul.appendChild(li);
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      loadSummaryDetails(idx);
+    });
   });
   sidebar.append(ul);
+}
+
+// idx: the idx of which summary doob we want to get the q's for lol.
+function loadSummaryDetails(idx) {
+  let sidebar = document.getElementById("sidebar");
+  sidebar.innerHTML = `<h2>Summary Summary<hr class="thick-boi">`;
+
+  let p = document.createElement("p");
+  p.innerHTML = data.Summary[idx].daText;
+  sidebar.append(p);
+
+  // This is basically copy-pasta from updateSidebar lol.
+  data.Summary[idx].questionIdxs.forEach((idx) => {
+    let accord = document.createElement("div");
+    accord.classList.add("accordion");
+    accord.id = `accordionExample${idx}`;
+
+    let el = data.Questions[idx];
+    for (let i = 0; i < el.Questions.length; i++) {
+      let ques = el.Questions[i];
+      let ans = el.Chatgpt_response[i];
+      ans = wrapWithPTags(ans);
+
+      let thingy = document.createElement("div");
+      thingy.classList.add("accordion-item");
+      let short = ques;
+      let maxLength = 50;
+      if (ques.length > maxLength) {
+        short = ques.slice(0, maxLength) + "...";
+      }
+      if (el.Lines[0] != el.Lines[1] && el.Lines[1] - el.Lines[0] < 40) {
+        lines = `Lines ${el.Lines[0]} - ${el.Lines[1]}<hr class="thin-boi">`;
+      } else if (el.Lines[0] == el.Lines[1]) {
+        lines = '';
+      }
+      // let ans = el.Chatgpt_response[i];
+      thingy.innerHTML = `<h5><button class="accordion-button collapsed question-butt" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${idx}_${i}" aria-expanded="false" aria-controls="collapseOne">
+                    ${short} </button> </h5>
+                    <div id="collapse${idx}_${i}" class="accordion-collapse collapse" aria-labelledby="headingOne">
+                        <div class="accordion-body">
+                        <div class="question-text p-2"><span class="line-chip">${lines}</span>${ques}</div> <div class="answer-text p-2"> ${ans} </div>
+                        </div>
+                    </div>`;
+      accord.append(thingy);
+    }
+
+    let sep = document.createElement("div");
+    sep.innerHTML = `<hr class="thick-boi">`;
+    sidebar.append(accord);
+    sidebar.append(sep);
+    // Finally, let's highlight the code if we hover over the accordian :)
+    accord.addEventListener("mouseover", () => {
+        for (let i = lo; i <= hi; i++) {
+            let line = document.getElementById(`L${i}`);
+            line.classList.add("highlight");
+        }
+    });
+    accord.addEventListener("mouseout", () => {
+        for (let i = lo; i <= hi; i++) {
+            let line = document.getElementById(`L${i}`);
+            line.classList.remove("highlight");
+        }
+    });
+  });
+
+
+  const button = document.createElement("button");
+  button.textContent = "Go Back";
+  button.classList.add("back-button");
+  sidebar.append(button);
+  button.addEventListener("click", () => {
+    loadSummary(data);
+  });
 }
 
 function wrapWithPTags(str) {

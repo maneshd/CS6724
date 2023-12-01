@@ -1,24 +1,31 @@
+var testCode;
+var data;
+
 window.onload = () => {
-  // TEST_CODE is in data.js.
-  loadCode(TEST_CODE);
+  // testCode is in data.js.
+  hackyPreprocessing();
+  loadCode(testCode);
 };
 
 function loadCode(codeText) {
   let codebox = document.getElementById("da-code");
   codebox.innerHTML = "";
-  loadSidebar(DATA);
+  loadSidebar(data);
 
-  let lineToQuestionCount = TEST_CODE.split("\n").map((_, idx) => {
+  let lineToQuestionCount = testCode.split("\n").map((_, idx) => {
     let lineNum = idx + 1;
-    return DATA.Questions.filter((q) => {
+    return data.Questions.filter((q) => {
       let [lo, hi] = q.Lines;
       return lo <= lineNum && lineNum <= hi;
     }).length;
   });
+  // lineToQuestionCount.forEach((count, idx) => {
+  //   console.log(`Line ${idx + 1} has ${count} questions.`);
+  // });
   let maxQuestionCount = Math.max(...lineToQuestionCount);
 
   // For each line of code
-  TEST_CODE.split("\n").forEach((line, idx) => {
+  testCode.split("\n").forEach((line, idx) => {
     idx++;
 
     let uberSpan = document.createElement("span");
@@ -66,7 +73,7 @@ function updateSidebar(lineOfCode) {
   let sidebar = document.getElementById("sidebar");
   sidebar.innerHTML = `<h2>Questions for line ${lineOfCode}</h2><hr class="thick-boi">`;
 
-  DATA.Questions.forEach((el, idx) => {
+  data.Questions.forEach((el, idx) => {
     let [lo, hi] = el.Lines;
     if (lineOfCode < lo || lineOfCode > hi) return;  // Question doesn't include this line.
 
@@ -74,9 +81,12 @@ function updateSidebar(lineOfCode) {
     accord.classList.add("accordion");
     accord.id = `accordionExample${idx}`;
     for (let i = 0; i < el.Questions.length; i++) {
+      let ques = el.Questions[i];
+      let ans = el.Chatgpt_response[i];
+      ans = wrapWithPTags(ans);
+
       let thingy = document.createElement("div");
       thingy.classList.add("accordion-item");
-      let ques = el.Questions[i];
       let short = ques;
       let maxLength = 50;
       if (ques.length > maxLength) {
@@ -87,7 +97,7 @@ function updateSidebar(lineOfCode) {
       } else if (el.Lines[0] == el.Lines[1]) {
         lines = '';
       }
-      let ans = el.Chatgpt_response[i];
+      // let ans = el.Chatgpt_response[i];
       thingy.innerHTML = `<h5><button class="accordion-button collapsed question-butt" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${idx}_${i}" aria-expanded="false" aria-controls="collapseOne">
                     ${short} </button> </h5>
                     <div id="collapse${idx}_${i}" class="accordion-collapse collapse" aria-labelledby="headingOne">
@@ -121,7 +131,7 @@ function updateSidebar(lineOfCode) {
   button.classList.add("back-button");
   sidebar.append(button);
   button.addEventListener("click", () => {
-    loadSidebar(DATA);
+    loadSidebar(data);
   });
 }
 
@@ -129,10 +139,26 @@ function loadSidebar(data) {
   let sidebar = document.getElementById("sidebar");
   sidebar.innerHTML = `<h2>Questions Summary<hr class="thick-boi">`;
   let ul = document.createElement("ul");
-  DATA.Summary.forEach((el) => {
+  data.Summary.forEach((el) => {
     let li = document.createElement("li");
     li.innerHTML = el;
     ul.appendChild(li);
   });
   sidebar.append(ul);
+}
+
+function wrapWithPTags(str) {
+  return str.split("\n\n").map((line) => `<p>${line}</p>`).join("\n");
+}
+
+
+function hackyPreprocessing() {
+  // Trim the first two lines of testCode lol.
+  testCode = TEST_CODE.substring(2);
+
+  // Subtract 2 from each line number in DATA.
+  DATA.Questions.forEach((el) => {
+    el.Lines = el.Lines.map((x) => x - 2);
+  });
+  data = DATA;
 }

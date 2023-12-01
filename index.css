@@ -8,8 +8,8 @@
 #codebox {
   border: solid 1px black;
   background-color: #282c34;
-  max-height: 1000px;
-  overflow: scroll;
+  /* max-height: 1000px;
+  overflow: scroll; */
 }
 
 /* safari and chrome? */
@@ -19,6 +19,11 @@
 
 pre::-webkit-scrollbar { 
   display: none; 
+}
+
+.doob {
+  height: 700px;
+  overflow-y: scroll;
 }
 
 /* .loc-span:hover {

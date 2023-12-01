@@ -118,6 +118,7 @@ function updateSidebar(lineOfCode) {
             let line = document.getElementById(`L${i}`);
             line.classList.add("highlight");
         }
+        document.getElementById(`L${lo}`).scrollIntoView({behavior: "smooth", block: "center"});
     });
     accord.addEventListener("mouseout", () => {
         for (let i = lo; i <= hi; i++) {
@@ -167,6 +168,9 @@ function loadSummaryDetails(idx) {
 
   // This is basically copy-pasta from updateSidebar lol.
   data.Summary[idx].questionIdxs.forEach((idx) => {
+    let [lo, hi] = data.Questions[idx].Lines;
+    let linesText = lo === hi ? `(Line ${lo})` : `(Lines ${lo}-${hi})`;
+
     let accord = document.createElement("div");
     accord.classList.add("accordion");
     accord.id = `accordionExample${idx}`;
@@ -174,6 +178,7 @@ function loadSummaryDetails(idx) {
     let el = data.Questions[idx];
     for (let i = 0; i < el.Questions.length; i++) {
       let ques = el.Questions[i];
+      let quesLines = ques + " " + linesText;
       let ans = el.Chatgpt_response[i];
       ans = wrapWithPTags(ans);
 
@@ -194,7 +199,7 @@ function loadSummaryDetails(idx) {
                     ${short} </button> </h5>
                     <div id="collapse${idx}_${i}" class="accordion-collapse collapse" aria-labelledby="headingOne">
                         <div class="accordion-body">
-                        <div class="question-text p-2"><span class="line-chip">${lines}</span>${ques}</div> <div class="answer-text p-2"> ${ans} </div>
+                        <div class="question-text p-2"><span class="line-chip">${lines}</span>${quesLines}</div> <div class="answer-text p-2"> ${ans} </div>
                         </div>
                     </div>`;
       accord.append(thingy);
@@ -210,6 +215,7 @@ function loadSummaryDetails(idx) {
             let line = document.getElementById(`L${i}`);
             line.classList.add("highlight");
         }
+        document.getElementById(`L${lo}`).scrollIntoView({behavior: "smooth", block: "center"});
     });
     accord.addEventListener("mouseout", () => {
         for (let i = lo; i <= hi; i++) {

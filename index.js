@@ -132,7 +132,7 @@ function updateSidebar(lineOfCode) {
   button.classList.add("back-button");
   sidebar.append(button);
   button.addEventListener("click", () => {
-    loadSidebar(data);
+    loadSummary(data);
   });
 }
 

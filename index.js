@@ -135,13 +135,14 @@ function updateSidebar(lineOfCode) {
   });
 }
 
+// Initial sidebar (i.e., the summaries)
 function loadSidebar(data) {
   let sidebar = document.getElementById("sidebar");
   sidebar.innerHTML = `<h2>Questions Summary<hr class="thick-boi">`;
   let ul = document.createElement("ul");
-  data.Summary.forEach((el) => {
+  data.Summary.forEach(({daText}) => {
     let li = document.createElement("li");
-    li.innerHTML = el;
+    li.innerHTML = daText;
     ul.appendChild(li);
   });
   sidebar.append(ul);

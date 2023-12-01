@@ -1,41 +1,55 @@
 // We can just plop our data/JSON in this file lol
 const DATA = {
   Summary: [
-    'TODO: GET NEW SUMMARY',
-    'Understanding code purpose, especially scikit-learn functions.',
-    'Grasping K-Nearest Neighbors (KNN) and n_neighbors.',
-    'Grasping feature standardization.',
-    'Interpreting visualizations, like error rate plots.',
-    'Interpreting evaluation metrics (e.g., confusion matrix, classification report).',
-    'Navigating Python syntax and library functions.'
+    {
+      daText: "Understanding code snippets and API functions",
+      questionIdxs: [0, 2, 4, 30, 20, 21, 22, 11, 17, 18, 19],
+    },
+    {
+      daText: "Neural Network Architecture",
+      questionIdxs: [1, 5, 9, 18, 21, 26, 27 ],
+    },
+    {
+      daText: "Machine Learning Concepts",
+      questionIdxs: [6, 8, 22, 23, 29, 31],
+    },
+    {
+      daText: "Other Questions",
+      questionIdxs: [3, 7, 10, 12, 13, 14, 15, 16, 24, 25, 28],
+    },
   ],
   Questions: [
     // Jelson
     {  
+      // 0
       Questions: ['Explain this line np.random.seed(123)'],
       Chatgpt_response: [
         'The active selection is a line of code in Python that uses the np.random.seed function from the NumPy library. This function is used to initialize the random number generator in NumPy. The np.random.seed function takes an integer as an argument, in this case 123, and uses it to set the seed for the random number generator. This means that any random numbers generated after this line of code will be based on this seed.'],
       Lines: [8, 8],
     },
     {
+      // 1
       Questions: ['What is the purpose of the Forward Pass algorithm in Neural Networks'],
       Chatgpt_response: [
         `The forward pass is a fundamental part of a neural network's operation. It's the process where the input data is passed through the network, from input layer to hidden layers, and finally to the output layer. Here are the reasons why you would need to use a forward pass algorithm in your neural network: Prediction: The forward pass is used to generate a prediction from the input data. Training: The forward pass is used to generate the network's prediction, and then the error of this prediction is calculated. Feature Extraction: In some cases, the output from one of the hidden layers obtained during the forward pass is used as a feature vector for other machine learning tasks.`],
       Lines: [49, 49],
     },
     {  
+      // 2
       Questions: ['Explain def update_weights(self,gradients,eta)'],
       Chatgpt_response: [
         'The update_weights method is a crucial part of the training process for a neural network. After a forward pass through the network (to make predictions) and a backward pass (to calculate the gradient of the loss function with respect to the weights), this method is used to adjust the weights of the network in order to improve the accuracy of its predictions.'],
       Lines: [116, 116],
     },
     {  
+      // 3
       Questions: ['How many iterations is considered too many?'],
       Chatgpt_response: [
         `The number of iterations that are considered "too many" depends on various factors such as the complexity of the problem, the size of the dataset, and the computational resources available. In general, if the training process is taking an excessively long time or if the model starts to overfit the training data, it may indicate that the number of iterations is too high. It is recommended to monitor the training progress, evaluate the model's performance on a validation set, and consider early stopping techniques to prevent overfitting.`],
       Lines: [161, 161],
     },
     {  
+      // 4
       Questions: ['What does np.ravel do?'],
       Chatgpt_response: [
         'The np.ravel function is a method in the NumPy library in Python. It is used to flatten a multi-dimensional array into a contiguous flattened 1D array. When np.ravel is applied to an array, it returns a new array that has the same elements as the original array but with all the dimensions collapsed into one.'],
